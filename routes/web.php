@@ -23,7 +23,11 @@ Route::controller(\App\Http\Controllers\AuthController::class)->group(function (
 
 Route::controller(DashboardController::class)->group(function (){
     Route::get('/dashboard', 'index')->name('dashboard');
+
     Route::middleware('auth')->group(function (){
         Route::post('/upload', 'uploadLostItem')->name('upload-lost-item');
+        Route::get('/my-items', 'myItems')->name('my-items');
+        Route::get('/details/{lostItem}', 'details')->name('details');
+        Route::get('/claim/{lostItem}', 'claim')->name('claim');
     });
 });

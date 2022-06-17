@@ -15,11 +15,16 @@ return new class extends Migration
     {
         Schema::create('lost_items', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('description')->unique();
-            $table->string('last_seen')->unique();
-            $table->string('image_url')->unique();
-            $table->string('location')->unique();
+            $table->foreignId('user_id');
+            $table->foreignId('claimed_by')->nullable();
+            $table->string('name');
+            $table->string('claimed')->default(false);
+            $table->string('description');
+            $table->string('last_seen');
+            $table->string('image_url');
+            $table->string('location');
+            $table->foreign('claimed_by')->on('users')->references('id');
+            $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();
             $table->timestamps();
         });
     }
