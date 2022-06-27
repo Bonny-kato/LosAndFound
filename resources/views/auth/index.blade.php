@@ -27,13 +27,13 @@
                         <div class="space-y-2">
                             <label for="email" class="">Email</label>
                             <input id="email" name="email" type="text" placeholder="eg: mail@black.com"
-                                   class="w-full focus:border-black/10 focus:ring-0 outline-none text-sm py-3 placeholder-gray-400/50 rounded-full border-[1px] border-black/10 outline-none">
+                                   class="w-full focus:border-black/10 focus:ring-0 outline-none text-sm py-3 placeholder-gray-400/50 rounded-full border-[1px] border-black/10 outline-none" required>
                         </div>
 
                         <div class="space-y-2">
                             <label for="password" class="">Password</label>
                             <input name="password" id="password" type="password" placeholder="Min.8 character"
-                                   class="w-full outline-none focus:ring-0 text-sm py-3 focus:border-black/10 placeholder-gray-400/50 rounded-full border-[1px] border-black/10 outline-none">
+                                   class="w-full outline-none focus:ring-0 text-sm py-3 focus:border-black/10 placeholder-gray-400/50 rounded-full border-[1px] border-black/10 outline-none" required>
                         </div>
                         <div class="flex justify-between hidden text-xs items-center">
                             <div class="flex items-center space-x-2">
@@ -72,23 +72,23 @@
                             <div class="">
                                 <label for="email" class="">Full Name</label>
                                 <input id="email" name="full_name" type="text" placeholder="eg: Gladdy Mataka"
-                                       class="w-full focus:border-black/10 focus:ring-0 outline-none text-sm py-3 placeholder-gray-400/50 rounded-full border-[1px] border-black/10 outline-none">
+                                       class="w-full focus:border-black/10 focus:ring-0 outline-none text-sm py-3 placeholder-gray-400/50 rounded-full border-[1px] border-black/10 outline-none" required>
                             </div>
                             <div class="space-y-2">
                                 <label for="email" class="">Phone Number</label>
                                 <input id="email" name="phone_number" type="text" placeholder="eg: 0759144442"
-                                       class="w-full focus:border-black/10 focus:ring-0 outline-none text-sm py-3 placeholder-gray-400/50 rounded-full border-[1px] border-black/10 outline-none">
+                                       class="w-full focus:border-black/10 focus:ring-0 outline-none text-sm py-3 placeholder-gray-400/50 rounded-full border-[1px] border-black/10 outline-none" required>
                             </div>
                             <div class="space-y-2">
                                 <label for="email" class="">Email</label>
                                 <input id="email" name="email" type="text" placeholder="eg: mail@black.com"
-                                       class="w-full focus:border-black/10 focus:ring-0 outline-none text-sm py-3 placeholder-gray-400/50 rounded-full border-[1px] border-black/10 outline-none">
+                                       class="w-full focus:border-black/10 focus:ring-0 outline-none text-sm py-3 placeholder-gray-400/50 rounded-full border-[1px] border-black/10 outline-none" required>
                             </div>
 
                             <div class="space-y-2">
                                 <label for="password" class="">Password</label>
                                 <input id="password" name="password" type="password" placeholder="Min.8 character"
-                                       class="w-full outline-none focus:ring-0 text-sm py-3 focus:border-black/10 placeholder-gray-400/50 rounded-full border-[1px] border-black/10 outline-none">
+                                       class="w-full outline-none focus:ring-0 text-sm py-3 focus:border-black/10 placeholder-gray-400/50 rounded-full border-[1px] border-black/10 outline-none" required>
                             </div>
                             <div class="flex justify-between text-xs hidden items-center">
                                 <div class="flex items-center space-x-2">

@@ -31,6 +31,7 @@ class DashboardController extends Controller
         $items = $user->lostitem;
         return view('dashboard.my-items.index', ['items' => $items]);
     }
+
     public function uploadLostItem(Request $request){
         $validatedData = $request->validate([
             'name'=>['string', 'required'],
@@ -40,8 +41,6 @@ class DashboardController extends Controller
             'location' => ['string', 'required'],
             'status' => ['string', 'required']
         ]);
-
-        $current_user = $request->user()->id;
 
         $newImageName = time().'-'.$request->get('title').'.'.$request->image->extension();  // renaming image
         $request->image->move(public_path('images/categories'), $newImageName);
@@ -53,10 +52,15 @@ class DashboardController extends Controller
             'location' => $validatedData['location'],
             'last_seen' => $validatedData['last_seen'],
             'status' => $validatedData['status'],
-            'user_id' => $current_user
+            'user_id' => $request->user()->id
         ]);
 
         return back();
+    }
+
+    public function showUsers(Request $request) {
+        $users = User::all();
+        return view("admin.users", ["users" => $users]);
     }
 
 }

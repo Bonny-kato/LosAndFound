@@ -14,7 +14,6 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
-//        dd($request->all());
         $validatedData = $request->validate([
             'email' => ['email', 'required'],
             'password' => ['string', 'required']
@@ -27,7 +26,8 @@ class AuthController extends Controller
 
         if($user){
             $request->session()->regenerate();
-            return redirect(route('dashboard'));
+            $route = auth()->user()->account_type == "admin" ? "admin-dashboard" : "dashboard";
+            return redirect(route($route));
         }else return back();
     }
 

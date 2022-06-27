@@ -75,7 +75,7 @@
                        @csrf
                        <div class=" h-full">
                            <label class="">
-                               <input onchange="previewImage(event)" type="file" name="image" id="" class="hidden">
+                               <input onchange="previewImage(event)" type="file" name="image" id="selected_item_image" class="hidden" required>
                                <div class=" h-full flex cursor-pointer group justify-center items-center relative w-full">
                                    <img id="image-previewer" src="https://i.pinimg.com/564x/35/09/52/35095299bd61414b41caec316ee7f761.jpg" class="object-cover" alt="">
                                    <div class="absolute  group-hover:flex hidden bg-gradient-to-r from-secondary-blue/50 to-transparent pointer-events-none  inset-0  justify-center items-center">
@@ -90,23 +90,23 @@
                        <p class="text-xl font-semibold ">Upload Lost Items</p>
                        <div  class="space-y-4 mt-10">
                            <div class="space-y-2">
-                               <label >
-                                   <input name="name" type="text" placeholder="Items Name" class="w-full focus:border-black/10 focus:ring-0 outline-none text-sm py-3 placeholder-gray-400/50 rounded-full border-[1px] border-black/10 outline-none">
-                               </label>
-                           </div>
-                           <div class="space-y-2">
-                               <label for="email">
-                                   <input id="email" name="last_seen" type="text" placeholder="Last Seen" class="w-full focus:border-black/10 focus:ring-0 outline-none text-sm py-3 placeholder-gray-400/50 rounded-full border-[1px] border-black/10 outline-none">
+                               <label>
+                                   <input name="name" type="text" placeholder="Items Name" class="w-full focus:border-black/10 focus:ring-0 outline-none text-sm py-3 placeholder-gray-400/50 rounded-full border-[1px] border-black/10 outline-none" required>
                                </label>
                            </div>
                            <div class="space-y-2">
                                <label>
-                                   <input id="email" type="text" name="location" placeholder="Location " class="w-full focus:border-black/10 focus:ring-0 outline-none text-sm py-3 placeholder-gray-400/50 rounded-full border-[1px] border-black/10 outline-none">
+                                   <input id="last_seen" name="last_seen" type="date" placeholder="Last Seen" class="w-full focus:border-black/10 focus:ring-0 outline-none text-sm py-3 placeholder-gray-400/50 rounded-full border-[1px] border-black/10 outline-none" required>
                                </label>
                            </div>
                            <div class="space-y-2">
                                <label>
-                                   <select name="status" id="" class="w-full focus:border-black/10 focus:ring-0 outline-none text-sm py-3 placeholder-gray-400/50 rounded-full border-[1px] border-black/10 outline-none">
+                                   <input id="location" type="text" name="location" placeholder="Location " class="w-full focus:border-black/10 focus:ring-0 outline-none text-sm py-3 placeholder-gray-400/50 rounded-full border-[1px] border-black/10 outline-none" required>
+                               </label>
+                           </div>
+                           <div class="space-y-2">
+                               <label>
+                                   <select name="status" id="" class="w-full focus:border-black/10 focus:ring-0 outline-none text-sm py-3 placeholder-gray-400/50 rounded-full border-[1px] border-black/10 outline-none" required>
                                        <option  selected disabled value="">Choose Status</option>
                                        <option value="found">Found</option>
                                        <option value="lost">Lost</option>
@@ -115,14 +115,12 @@
                            </div>
                            <div class="space-y-2">
                                <label for="description">
-                                   <textarea style="resize:none" placeholder="Description" name="description" id="description" cols="30" rows="2" class="w-full focus:border-black/10 focus:ring-0 outline-none text-sm  placeholder-gray-400/50 rounded-lg border-[1px] border-black/10 outline-none"></textarea>
+                                   <textarea style="resize:none" placeholder="Description" name="description" id="description" cols="30" rows="4" class="w-full focus:border-black/10 focus:ring-0 outline-none text-sm  placeholder-gray-400/50 rounded-lg border-[1px] border-black/10 outline-none" required></textarea>
                                </label>
                            </div>
                            <div class="space-y-2">
-                               <button class=" text-sm py-3 w-full text-white text-center bg-secondary-blue rounded-full">Upload</button>
+                               <button onclick="validateForm()" class="text-sm py-3 w-full text-white text-center bg-secondary-blue rounded-full">Upload</button>
                            </div>
-
-                       </div>
                    </div>
                    </form>
 
@@ -161,6 +159,13 @@
                 {{--clearDetails(){--}}
                 {{--    this.selectedItem = "";--}}
                 {{--}--}}
+            }
+        }
+
+        function validateForm() {
+            const selectedImage = document.getElementById("selected_item_image");
+            if (selectedImage == null || selectedImage == "" || selectedImage.files.length == 0) {
+                alert("Please select an image to continue...");
             }
         }
     </script>

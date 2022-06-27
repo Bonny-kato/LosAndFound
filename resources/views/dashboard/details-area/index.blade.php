@@ -2,7 +2,8 @@
 @section('main-area')
     <section class="p-5">
         <div class="py-10 px-5 space-y-5">
-            <p class="font-semibold text-xl">Latest items</p>
+            <button @@click="openModal=true; openForm=true" class="bg-secondary-blue px-4 py-3 text-sm rounded-full text-white ">Add Lost Item</button>
+            <p class="font-semibold text-xl">Latest Items</p>
             <div class="grid grid-cols-3 gap-x-16 gap-y-5 ">
 
                 @forelse($items as $item)
@@ -13,10 +14,10 @@
                             <div class="space-y-4">
                                 <div class="space-y-2 flex flex-col items-center">
                                     <div class=" h-20 w-20 flex ring-4 ring-white/50 justify-center items-center bg-red-500 rounded-full overflow-hidden ">
-                                        <img src="https://i.pinimg.com/564x/10/98/43/109843d9c66f36308adb0721d80f5b86.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" alt="">
                                     </div>
                                     <div class="text-center">
-                                        <p class="text-white font-semibold text-md tracking-wider">Gladdy Mataka</p>
+                                        <p class="text-white font-semibold text-md tracking-wider">{{ $item->name }}</p>
 
                                         <div class="flex items-center space-x-1 text-white/90 tracking-wider">
                                             <svg class="h-4 w-4 fill-current">
@@ -29,14 +30,14 @@
                                 </div>
 
                                 <div class="flex justify-center">
-                                    <a href="{{route('details', ['lostItem' => $item->id])}}" class="px-4 py-3 text-sm text-secondary-blue tracking-wider rounded-full font-semibold bg-white"> More Details</a>
+                                    <a href="{{route('details', ['lostItem' => $item->id])}}" class="px-4 py-3 text-sm text-secondary-blue tracking-wider rounded-full font-semibold bg-white">More Details</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @empty
                     <div class="h-96 flex items-center col-span-4 justify-center">
-                        <p>No items</p>
+                        <p>No Items</p>
                     </div>
                 @endforelse
 

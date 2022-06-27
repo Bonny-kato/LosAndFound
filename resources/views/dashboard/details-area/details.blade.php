@@ -13,6 +13,7 @@
 
                 <div class="space-y-4">
                     <div class="space-y-1">
+                        <p class="text-black/60">Item Name: <span class="text-black pl-2">{{$item->name}}</span></p>
                         <p class="text-black/60">Posted By: <span class="text-black pl-2">{{$item->user->name}}</span></p>
                         <p class="text-black/60">Lost On: <span class="text-black pl-2">{{$item->last_seen}}</span></p>
                         <p class="text-black/60">Location: <span  class="text-black pl-2"> {{$item->location}}</span></p>
@@ -30,17 +31,21 @@
 
                 <div>
                     @if($item->claimed)
-                        <button class="bg-red-500/20 text-red-500 hover:bg-secondary-blue/80 tracking-wide  pointer-events-none px-3 py-3 w-full text-sm rounded">Clammed</button>
-                        @else
-                            <a href="{{route('claim', ['lostItem' => $item->id])}}">
-                                <button class="bg-secondary-blue hover:bg-secondary-blue/80 tracking-wide text-white px-3 py-3 w-full text-sm rounded">Claim</button>
-                            </a>
+                        <button class="bg-red-500/20 text-red-500 hover:bg-secondary-blue/80 tracking-wide  pointer-events-none px-3 py-3 w-full text-sm rounded">Claimed</button>
+                    @else
+                        <a href="{{route('claim', ['lostItem' => $item->id])}}">
+                            <button class="@if (auth()->user()->account_type == "admin") hidden @endif bg-secondary-blue hover:bg-secondary-blue/80 tracking-wide text-white px-3 py-3 w-full text-sm rounded">Claim</button>
+                        </a>
                     @endif
-
+                    @if (auth()->user()->account_type == "admin")
+                    <a href="{{route('delete-item', ['item_id' => $item->id])}}">
+                        <button style="margin-top: 10px;" class="bg-red-500 hover:bg-red-500/80 tracking-wide text-white px-3 py-3 w-full text-sm rounded">Delete</button>
+                    </a>
+                    @endif
                 </div>
 
                 <!-- close button -->
-                <a href="{{route("dashboard")}}" class="absolute -top-3 right-5 cursor-pointer hover:bg-gray-200 h-8 w-8 flex justify-center ring-black items-center rounded-full">
+                <a href="{{route(auth()->user()->account_type == "admin" ? "admin-dashboard" : "dashboard")}}" class="absolute -top-3 right-5 cursor-pointer hover:bg-gray-200 h-8 w-8 flex justify-center ring-black items-center rounded-full">
                     <svg class="h-4 w-4 text-black/70 fill-current">
                         <use href="#close-icon" />
                     </svg>

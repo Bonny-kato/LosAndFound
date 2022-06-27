@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', function () {
+    return redirect("/login");
+});
 
 Route::controller(\App\Http\Controllers\AuthController::class)->group(function (){
     Route::get('/login', 'loginForm')->name('login');
@@ -29,5 +35,15 @@ Route::controller(DashboardController::class)->group(function (){
         Route::get('/my-items', 'myItems')->name('my-items');
         Route::get('/details/{lostItem}', 'details')->name('details');
         Route::get('/claim/{lostItem}', 'claim')->name('claim');
+    });
+});
+
+Route::controller(AdminDashboardController::class)->group(function (){
+    Route::get('/admin-dashboard', 'index')->name('admin-dashboard');
+
+    Route::middleware('auth')->group(function (){
+        Route::get('/users', 'showUsers')->name('show-users');
+        Route::delete('/delete-user/{user_id}', 'deleteUser')->name('delete-user');
+        Route::delete('/delete-item/{item_id}', 'deleteItem')->name('delete-item');
     });
 });
